@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
 
-dotenv.config("./.env");
+dotenv.config();
 
 // Configuration
 cloudinary.config({
@@ -25,7 +25,7 @@ const app = express();
 app.use(express.json({ limit: "10mb" }));
 app.use(morgan("common"));
 app.use(cookieParser());
-let origin = 'http://localhost:3000';
+let origin = process.env.FRONTEND_ORIGIN;
 console.log('here env', process.env.NODE_ENV);
 if(process.env.NODE_ENV === 'production') {
     origin = process.env.CLIENT_ORIGIN;
